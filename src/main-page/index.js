@@ -29,7 +29,7 @@ function App() {
         <Header />
         <Switch>
           <Route path="/">
-            <FeaturedHouse />
+            <FeaturedHouse house={featuredHouse}/>
           </Route>
         </Switch>
       </div>
@@ -38,22 +38,3 @@ function App() {
 }
 
 export default App;
-
-
-
-/* {
-  allHouses.map((house) => (
-    <div key={house.id} className="row">
-      <h1 className='col-md-5'>
-        {house.price}
-      </h1>
-      <h2 className='col-md-5'>
-        {house.country}
-      </h2>
-      <p className='col-md-5'>
-        {house.address}
-      </p>
-      <img src={house.photo} alt="house"/>
-    </div>
-  ))
-} */
