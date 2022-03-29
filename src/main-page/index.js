@@ -1,10 +1,11 @@
 import './main-page.css';
-import Header from './Header';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './header';
+import FeaturedHouse from './featured-house';
 
 function App() {
   const [allHouses, setAllHouses] = useState([]);
-  let featuredHouse = {}
 
   useEffect(() => {
     const fetchHouses = async () => {
@@ -15,16 +16,24 @@ function App() {
     fetchHouses();
   }, []);
 
-  if(allHouses.length) {
-    let randomIdx = Math.floor(Math.random() * allHouses.length);
-    featuredHouse = allHouses[randomIdx];
-    console.log("allHouses ==> ", featuredHouse);
-  }
+  const featuredHouse = useMemo(() => {
+    if(allHouses.length) {
+      let randomIdx = Math.floor(Math.random() * allHouses.length);
+      return allHouses[randomIdx];
+    }
+  }, [allHouses]);
 
   return (
-    <div className="container">
-      <Header />
-    </div>
+    <Router>
+      <div className="container">
+        <Header />
+        <Switch>
+          <Route path="/">
+            <FeaturedHouse />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   )
 }
 
