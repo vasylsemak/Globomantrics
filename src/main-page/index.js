@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [allHouses, setAllHouses] = useState([]);
+  let featuredHouse = {}
 
   useEffect(() => {
     const fetchHouses = async () => {
@@ -13,6 +14,12 @@ function App() {
     }
     fetchHouses();
   }, []);
+
+  if(allHouses.length) {
+    let randomIdx = Math.floor(Math.random() * allHouses.length);
+    featuredHouse = allHouses[randomIdx];
+    console.log("allHouses ==> ", featuredHouse);
+  }
 
   return (
     <div className="container">
