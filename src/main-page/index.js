@@ -8,12 +8,13 @@ import SearchResults from '../search-results';
 
 function App() {
   const [allHouses, setAllHouses] = useState([]);
+  const [firstCountry, setFirstCountry] = useState(""); 
 
   useEffect(() => {
     const fetchHouses = async () => {
       const response = await fetch("/houses.json");
       const houses = await response.json();
-      setAllHouses(houses)
+      setAllHouses(houses); 
     }
     fetchHouses();
   }, []);
@@ -28,8 +29,14 @@ function App() {
   return (
     <Router>
       <div className="container">
-        <Header />
-        <HouseFilter houses={allHouses} />
+        <Header
+          setFirstCountry={setFirstCountry}
+        />
+        <HouseFilter 
+          houses={allHouses}
+          firstCountry={firstCountry}
+          setFirstCountry={setFirstCountry}
+        />
         <Switch>
           <Route path="/searchresults/:country">
             <SearchResults houses={allHouses} />

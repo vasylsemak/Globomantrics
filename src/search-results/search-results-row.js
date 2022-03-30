@@ -1,6 +1,4 @@
 const SearchResultsRow = ({ house }) => {
-  console.log("house ", house)
-
   return (
     <tr>
       <td>{house.address}</td>

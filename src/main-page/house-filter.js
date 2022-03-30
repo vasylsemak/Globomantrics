@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 
-const HouseFilter = ({ houses }) => {
+const HouseFilter = ({ houses, firstCountry, setFirstCountry }) => {
   const history = useHistory();
 
   const countries = houses
@@ -10,7 +10,8 @@ const HouseFilter = ({ houses }) => {
 
   const setSearchChange = (e) => {
     let country = e.target.value;
-    if(country) history.push(`/searchresults/${country}`);
+    setFirstCountry(country);
+    history.push(`/searchresults/${country}`);
   }
 
   return (
@@ -19,7 +20,7 @@ const HouseFilter = ({ houses }) => {
         Look for your dream house in country:
       </div>
       <div className="col-md-4 mb-3">
-        <select className="form-select" onChange={setSearchChange}>
+        <select className="form-select" value={firstCountry} onChange={setSearchChange}>
           {countries.map(c => (
             <option key={c} value={c}>
               {c}
