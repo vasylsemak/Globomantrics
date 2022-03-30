@@ -3,6 +3,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './header';
 import FeaturedHouse from './featured-house';
+import HouseFilter from './house-filter';
 
 function App() {
   const [allHouses, setAllHouses] = useState([]);
@@ -27,9 +28,10 @@ function App() {
     <Router>
       <div className="container">
         <Header />
+        <HouseFilter houses={allHouses} />
         <Switch>
           <Route path="/">
-            <FeaturedHouse house={featuredHouse}/>
+            <FeaturedHouse house={featuredHouse} />
           </Route>
         </Switch>
       </div>
