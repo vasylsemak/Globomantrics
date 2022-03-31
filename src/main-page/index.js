@@ -1,5 +1,5 @@
 import './main-page.css';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './header';
 import HouseFilter from './house-filter';
@@ -9,16 +9,26 @@ import FeaturedHouse from './featured-house';
 
 function App() {
   const [allHouses, setAllHouses] = useState([]);
-  const [firstCountry, setFirstCountry] = useState(""); 
+  const [firstCountry, setFirstCountry] = useState("");
+
+  const fetchHouses = useCallback(async () => {
+    const response = await fetch("/houses.json");
+    const houses = await response.json();
+    setAllHouses(houses); 
+  }, [])
 
   useEffect(() => {
-    const fetchHouses = async () => {
-      const response = await fetch("/houses.json");
-      const houses = await response.json();
-      setAllHouses(houses); 
-    }
     fetchHouses();
-  }, []);
+  }, [fetchHouses]);
+
+  // useEffect(() => {
+  //   const fetchHouses = async () => {
+  //     const response = await fetch("/houses.json");
+  //     const houses = await response.json();
+  //     setAllHouses(houses);
+  //   }
+  //   fetchHouses();
+  // }, [])
 
   const featuredHouse = useMemo(() => {
     if(allHouses.length) {

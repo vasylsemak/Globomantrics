@@ -1,21 +1,22 @@
 import { useState } from "react";
 
 const Inquiry = () => {
-  const [contactInfo, setContactInfo] = useState({
+  const defaultState = {
     name: "",
     email: "",
     remarks: ""
-  });
+  }
+  const [contactInfo, setContactInfo] = useState(defaultState);
 
   const onChange = (e) => {
-    setContactInfo({...contactInfo, [e.target.id]: e.target.value});
+    setContactInfo({...contactInfo, [e.target.name]: e.target.value});
   }
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log("Submited form", contactInfo);  
+    console.log("Submited form", contactInfo);
+    setContactInfo(defaultState);
   }
-
 
   return (
     <form className="mt-2">
@@ -23,7 +24,7 @@ const Inquiry = () => {
         <label htmlFor="name">Name</label>
         <input 
           type="text"
-          id="name"
+          name="name"
           className="form-control"
           placeholder="Name"
           value={contactInfo.name}
@@ -34,7 +35,7 @@ const Inquiry = () => {
         <label htmlFor="email">Email address</label>
         <input 
           type="text"
-          id="email"
+          name="email"
           className="form-control"
           placeholder="Email"
           value={contactInfo.email}
@@ -45,7 +46,7 @@ const Inquiry = () => {
         <label htmlFor="remarks">Remarks</label>
         <input 
           type="text"
-          id="remarks"
+          name="remarks"
           className="form-control"
           placeholder="Remarks"
           value={contactInfo.remarks}
@@ -55,6 +56,7 @@ const Inquiry = () => {
       <button
         className="btn btn-primary mt-2"
         onClick={submitForm}
+        disabled={!contactInfo.name || !contactInfo.email}
       >Submit</button>
     </form>
   );
