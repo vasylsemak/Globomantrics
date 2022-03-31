@@ -25,7 +25,12 @@ const House = ({ house }) => {
         <div className="col-md-5">
           <p className="price">${house.price}</p>
           <p>{house.description}</p>
-          <img src={emailIcon} height="50" alt="email-icon" onClick={toggleInquiry} />
+          <img 
+            src={emailIcon}
+            id="pointer-img"
+            alt="email-icon"
+            onClick={toggleInquiry}
+          />
           {inquiry && <Inquiry />}
         </div>
       </div>

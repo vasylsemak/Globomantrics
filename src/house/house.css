@@ -2,3 +2,7 @@
   font-size: larger;
   color: coral;
 }
+#pointer-img {
+  cursor: pointer;
+  height: 50px;
+}
