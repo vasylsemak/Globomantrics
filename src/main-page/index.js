@@ -2,9 +2,10 @@ import './main-page.css';
 import { useEffect, useState, useMemo } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './header';
-import FeaturedHouse from './featured-house';
 import HouseFilter from './house-filter';
 import SearchResults from '../search-results';
+import HouseFromQuery from '../house/house-from-query';
+import FeaturedHouse from './featured-house';
 
 function App() {
   const [allHouses, setAllHouses] = useState([]);
@@ -41,7 +42,10 @@ function App() {
           <Route path="/searchresults/:country">
             <SearchResults houses={allHouses} />
           </Route>
-          <Route path="/">
+          <Route path="/house/:id">
+            <HouseFromQuery houses={allHouses} />
+          </Route>
+          <Route exact path="/">
             <FeaturedHouse house={featuredHouse} />
           </Route>
         </Switch>
