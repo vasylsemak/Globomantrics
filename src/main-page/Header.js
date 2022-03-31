@@ -1,11 +1,14 @@
 import React from "react";
+// import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 const logo = require("./globoLogo.png");
 
 
 const Header = ({ setFirstCountry }) => {
+    // const history = useHistory();
     const handleClick = () => {
-        setFirstCountry(" ")
+        setFirstCountry(" ");
+        // history.push("/");
     }
 
     return (
