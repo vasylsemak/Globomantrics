@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Inquiry = () => {
+  // const nameRef = useRef(null);
+  // const count = useRef(0);
   const defaultState = {
     name: "",
     email: "",
@@ -16,13 +18,14 @@ const Inquiry = () => {
     e.preventDefault();
     console.log("Submited form", contactInfo);
     setContactInfo(defaultState);
+    // nameRef.current.value = "";
   }
 
   return (
     <form className="mt-2">
       <div className="form-group">
         <label htmlFor="name">Name</label>
-        <input 
+        <input
           type="text"
           name="name"
           className="form-control"

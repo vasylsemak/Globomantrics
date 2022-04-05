@@ -4,7 +4,9 @@ import SearchResultsRow from "./search-results-row";
 
 const SearchResults = ({ houses }) => {
   const { country } = useParams();
-  const countryHouses = houses.filter(h => h.country === country);
+  const countryHouses = houses 
+    ? houses.filter(h => h.country === country)
+    : null;
 
   return (
     <div className="mt-2">
