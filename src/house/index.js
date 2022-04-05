@@ -1,6 +1,7 @@
 import "./house.css";
 import { useState } from "react";
 import Inquiry from "./inquiry";
+import PropTypes from "prop-types";
 const emailIcon = require("./Email.png");
 
 const House = ({ house }) => {
@@ -37,5 +38,10 @@ const House = ({ house }) => {
     </>
   )
 };
+
+House.propTypes = {
+  house: PropTypes.object.isRequired,
+};
+
 
 export default House;
