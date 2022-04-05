@@ -8,6 +8,7 @@ import HouseFromQuery from '../house/house-from-query';
 import FeaturedHouse from './featured-house';
 import useHouses from '../hooks/useHouses';
 import useFeaturedHouse from '../hooks/useFeaturedHouse';
+import HouseContext from '../context/house-context';
 
 function App() {
   const [firstCountry, setFirstCountry] = useState("");
@@ -16,27 +17,26 @@ function App() {
 
   return (
     <Router>
-      <div className="container">
-        <Header
-          setFirstCountry={setFirstCountry}
-        />
-        <HouseFilter 
-          houses={allHouses}
-          firstCountry={firstCountry}
-          setFirstCountry={setFirstCountry}
-        />
-        <Switch>
-          <Route path="/searchresults/:country">
-            <SearchResults houses={allHouses} />
-          </Route>
-          <Route path="/house/:id">
-            <HouseFromQuery houses={allHouses} />
-          </Route>
-          <Route exact path="/">
-            <FeaturedHouse house={featuredHouse} />
-          </Route>
-        </Switch>
-      </div>
+      <HouseContext.Provider value={allHouses}>
+        <div className="container">
+          <Header setFirstCountry={setFirstCountry} />
+          <HouseFilter 
+            firstCountry={firstCountry}
+            setFirstCountry={setFirstCountry}
+          />
+          <Switch>
+            <Route path="/searchresults/:country">
+              <SearchResults />
+            </Route>
+            <Route path="/house/:id">
+              <HouseFromQuery />
+            </Route>
+            <Route exact path="/">
+              <FeaturedHouse house={featuredHouse} />
+            </Route>
+          </Switch>
+        </div>
+      </HouseContext.Provider>
     </Router>
   )
 }
